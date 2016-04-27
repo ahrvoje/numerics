@@ -10,17 +10,17 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     23765,        581]
-NotebookOptionsPosition[     23325,        562]
-NotebookOutlinePosition[     23824,        582]
-CellTagsIndexPosition[     23781,        579]
+NotebookDataLength[     24312,        590]
+NotebookOptionsPosition[     23872,        571]
+NotebookOutlinePosition[     24371,        591]
+CellTagsIndexPosition[     24328,        588]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 Cell["\<\
 Author: Hrvoje Abraham
-Date: 24.04.2016
+Date: 24.04.2016.
 License: MIT
 
 Floating point string to correctly rounded double precision value conversion \
@@ -47,7 +47,7 @@ Valid inputs are integers, C99 language standard decimal double precision \
 floating constants (section 6.4.4.2) and special values [-]inf and [-]nan \
 (section 7.19.6.1.8).
 
-The only non-stardardized constraint is that NaN value string can\
+The only non-standardized constraint is that NaN value string can\
 \[CloseCurlyQuote]t contain closing parenthesis \[OpenCurlyDoubleQuote])\
 \[CloseCurlyDoubleQuote] inside optional parentheses, e.g. input \
 \[OpenCurlyDoubleQuote]nan(type_0)_123)\[CloseCurlyDoubleQuote] is not \
@@ -96,7 +96,8 @@ precision value\
    3.670521408676464*^9, 3.670521412230238*^9}, {3.670521565784258*^9, 
    3.670521598572693*^9}, {3.670521639779775*^9, 3.6705216550158906`*^9}, 
    3.6705218456866693`*^9, {3.670521878015579*^9, 3.6705218992550507`*^9}, {
-   3.6705239258208513`*^9, 3.6705239333322363`*^9}, 3.6705242213909655`*^9}],
+   3.6705239258208513`*^9, 3.6705239333322363`*^9}, 3.6705242213909655`*^9, {
+   3.6705594017711554`*^9, 3.670559401836365*^9}, 3.670780293301754*^9}],
 
 Cell[BoxData[{
  RowBox[{
@@ -166,7 +167,7 @@ Cell[BoxData[{
         RowBox[{"Return", "[", 
          RowBox[{"{", 
           RowBox[{"sign", ",", "Indeterminate", ",", "0"}], "}"}], "]"}]}], 
-       "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       "]"}], ";", "\[IndentingNewLine]", 
       RowBox[{"(*", " ", 
        RowBox[{"check", " ", "for", " ", "infinity"}], " ", "*)"}], 
       "\[IndentingNewLine]", 
@@ -313,49 +314,32 @@ Cell[BoxData[{
             RowBox[{"2", "^", "53"}]}]}]}], ")"}], " ", "interval"}], " ", 
        "*)"}], "\[IndentingNewLine]", 
       RowBox[{"scale", "=", "0"}], ";", "\[IndentingNewLine]", 
-      RowBox[{"Which", "[", "\[IndentingNewLine]", 
-       RowBox[{"(*", " ", 
-        RowBox[{
-        "if", " ", "the", " ", "exact", " ", "value", " ", "is", " ", "below",
-          " ", "the", " ", "interval"}], " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
        RowBox[{
-        RowBox[{"a", "<", 
-         RowBox[{"2", "^", "52"}]}], ",", "\[IndentingNewLine]", 
-        RowBox[{"While", "[", 
-         RowBox[{
-          RowBox[{"a", "<", 
-           RowBox[{"2", "^", "52"}]}], ",", "\[IndentingNewLine]", 
-          RowBox[{
-           RowBox[{"a", "*=", "2"}], ";", 
-           RowBox[{"scale", "-=", "1"}], ";", "\[IndentingNewLine]", 
-           RowBox[{"(*", " ", 
-            RowBox[{"if", " ", "subnormal", " ", "case"}], " ", "*)"}], 
-           "\[IndentingNewLine]", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{
-              RowBox[{"scale", "\[Equal]", 
-               RowBox[{"-", "1074"}]}], "&&", 
-              RowBox[{"a", "<", 
-               RowBox[{"2", "^", "52"}]}]}], ",", 
-             RowBox[{"Break", "[", "]"}]}], "]"}]}]}], "]"}], ",", 
-        "\[IndentingNewLine]", 
-        RowBox[{"(*", " ", 
-         RowBox[{
-         "if", " ", "the", " ", "exact", " ", "value", " ", "is", " ", 
-          "above", " ", "the", " ", "interval"}], " ", "*)"}], 
-        "\[IndentingNewLine]", 
+       "if", " ", "the", " ", "exact", " ", "value", " ", "is", " ", "below", 
+        " ", "the", " ", "interval"}], " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"a", "<", 
+          RowBox[{"2", "^", "52"}]}], "&&", 
+         RowBox[{"scale", ">", 
+          RowBox[{"-", "1074"}]}]}], ",", 
+        RowBox[{
+         RowBox[{"a", "*=", "2"}], ";", 
+         RowBox[{"scale", "-=", "1"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "if", " ", "the", " ", "exact", " ", "value", " ", "is", " ", "above", 
+        " ", "the", " ", "interval"}], " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"While", "[", 
+       RowBox[{
         RowBox[{"a", ">=", 
-         RowBox[{"2", "^", "53"}]}], ",", "\[IndentingNewLine]", 
-        RowBox[{"While", "[", 
-         RowBox[{
-          RowBox[{"a", ">=", 
-           RowBox[{"2", "^", "53"}]}], ",", "\[IndentingNewLine]", 
-          RowBox[{
-           RowBox[{"a", "=", 
-            RowBox[{"a", "/", "2"}]}], ";", 
-           RowBox[{"scale", "+=", "1"}]}]}], "]"}]}], "]"}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{"2", "^", "53"}]}], ",", 
+        RowBox[{
+         RowBox[{"a", "/=", "2"}], ";", 
+         RowBox[{"scale", "+=", "1"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
       RowBox[{"(*", " ", 
        RowBox[{
        "significand", " ", "integer", " ", "part", " ", "and", " ", 
@@ -389,7 +373,6 @@ Cell[BoxData[{
             RowBox[{"2", "r"}], "\[Equal]", "d"}], "&&", 
            RowBox[{"OddQ", "[", "sd", "]"}]}], ")"}]}], ",", 
         RowBox[{"sd", "+=", "1"}]}], "]"}], ";", "\[IndentingNewLine]", 
-      "\[IndentingNewLine]", 
       RowBox[{"(*", 
        RowBox[{
         RowBox[{" ", 
@@ -410,7 +393,10 @@ Cell[BoxData[{
           RowBox[{"2", "^", "52"}]}], ";", 
          RowBox[{"scale", "+=", "1"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
       "\[IndentingNewLine]", 
-      RowBox[{"(*", " ", "result", " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{"sign", ",", " ", "significand", ",", " ", 
+        RowBox[{"power", " ", "of", " ", "2", " ", "scale", " ", "bias"}]}], 
+       " ", "*)"}], "\[IndentingNewLine]", 
       RowBox[{"Return", "[", 
        RowBox[{"{", 
         RowBox[{"sign", ",", "sd", ",", "scale"}], "}"}], "]"}], ";"}]}], 
@@ -428,7 +414,7 @@ Cell[BoxData[{
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
-   RowBox[{"StringToDoubleB", "[", "str_", "]"}], ":=", 
+   RowBox[{"StringToDoubleBin", "[", "str_", "]"}], ":=", 
    RowBox[{"Module", "[", 
     RowBox[{
      RowBox[{"{", 
@@ -496,12 +482,27 @@ Cell[BoxData[{
            RowBox[{"sd", ",", "2", ",", "52"}], "]"}]}]}]}], "]"}], ";", 
       "\[IndentingNewLine]", "\[IndentingNewLine]", 
       RowBox[{"Return", "[", 
-       RowBox[{"Join", "[", 
-        RowBox[{"signBin", ",", "exponentBin", ",", "mantissaBin"}], "]"}], 
-       "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}], 
+       RowBox[{"IntegerString", "[", 
+        RowBox[{
+         RowBox[{"FromDigits", "[", 
+          RowBox[{
+           RowBox[{"Join", "[", 
+            RowBox[{"signBin", ",", "exponentBin", ",", "mantissaBin"}], 
+            "]"}], ",", "2"}], "]"}], ",", "2", ",", "64"}], "]"}], "]"}], 
+      ";"}]}], "\[IndentingNewLine]", "]"}]}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"StringToDoubleI", "[", "str_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"StringToDoubleHex", "[", "str_", "]"}], ":=", 
+   RowBox[{"IntegerString", "[", 
+    RowBox[{
+     RowBox[{"FromDigits", "[", 
+      RowBox[{
+       RowBox[{"StringToDoubleBin", "[", "str", "]"}], ",", "2"}], "]"}], ",",
+      "16", ",", "16"}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"StringToDoubleInt", "[", "str_", "]"}], ":=", 
   RowBox[{"Module", "[", 
    RowBox[{
     RowBox[{"{", 
@@ -558,7 +559,15 @@ Cell[BoxData[{
    3.6705159850422993`*^9}, {3.670517599002041*^9, 3.670517672090148*^9}, {
    3.6705177169621725`*^9, 3.670517725377572*^9}, {3.670521353864874*^9, 
    3.6705213574831157`*^9}, {3.6705242944988003`*^9, 3.6705243154507303`*^9}, 
-   3.670524461251134*^9}]
+   3.670524461251134*^9, {3.670682329369837*^9, 3.67068235518712*^9}, {
+   3.6706825204958577`*^9, 3.670682541491683*^9}, {3.6706825896263256`*^9, 
+   3.670682617406189*^9}, {3.6706826714536*^9, 3.670682713667407*^9}, {
+   3.6706828792455454`*^9, 3.67068288423566*^9}, {3.6706830070872145`*^9, 
+   3.67068301922348*^9}, {3.670683308283455*^9, 3.670683310221575*^9}, {
+   3.670683418594436*^9, 3.67068344196111*^9}, {3.6706834730768414`*^9, 
+   3.670683474452501*^9}, {3.670684027909708*^9, 3.6706840813710833`*^9}, {
+   3.670684115802627*^9, 3.6706841181308126`*^9}, {3.6706842398200455`*^9, 
+   3.670684251983425*^9}, {3.670684370183133*^9, 3.67068437025432*^9}}]
 },
 WindowSize->{888, 820},
 WindowMargins->{{460, Automatic}, {Automatic, 103}},
@@ -581,8 +590,8 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 4124, 78, 657, "Text"],
-Cell[4685, 100, 18636, 460, 2221, "Input"]
+Cell[558, 20, 4199, 79, 657, "Text"],
+Cell[4760, 101, 19108, 468, 2081, "Input"]
 }
 ]
 *)
