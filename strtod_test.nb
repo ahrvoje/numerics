@@ -1,0 +1,250 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8789,        242]
+NotebookOptionsPosition[      8349,        224]
+NotebookOutlinePosition[      8698,        239]
+CellTagsIndexPosition[      8655,        236]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"<<", "strtod`"}]}], "Input",
+ CellChangeTimes->{{3.670853129540491*^9, 3.670853180554883*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"lines", "=", 
+   RowBox[{"ReadList", "[", 
+    RowBox[{"\"\<strtod_tests.toml\>\"", ",", "String"}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.6708519537938514`*^9, 3.6708519711319647`*^9}, {
+  3.6708521318525095`*^9, 3.67085215922735*^9}, {3.670852514819849*^9, 
+  3.6708525529952784`*^9}, {3.6708531980838056`*^9, 3.670853201074602*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"uid", "=", 
+   RowBox[{"{", "}"}]}], ";", 
+  RowBox[{"str", "=", 
+   RowBox[{"{", "}"}]}], ";", 
+  RowBox[{"hex", "=", 
+   RowBox[{"{", "}"}]}], ";", 
+  RowBox[{"int", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{"i", "=", "1"}], ",", 
+   RowBox[{"i", "\[LessEqual]", 
+    RowBox[{"Length", "[", "lines", "]"}]}], ",", 
+   RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"line", "=", 
+     RowBox[{"lines", "[", 
+      RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"StringLength", "[", "line", "]"}], "<", "6"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Continue", "[", "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"start", "=", 
+     RowBox[{"StringTake", "[", 
+      RowBox[{"line", ",", "6"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"start", "\[Equal]", "\"\<UID = \>\""}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"AppendTo", "[", 
+       RowBox[{"uid", ",", 
+        RowBox[{"StringTake", "[", 
+         RowBox[{"line", ",", 
+          RowBox[{"{", 
+           RowBox[{"8", ",", 
+            RowBox[{"-", "2"}]}], "}"}]}], "]"}]}], "]"}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"start", "\[Equal]", "\"\<str = \>\""}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"AppendTo", "[", 
+       RowBox[{"str", ",", 
+        RowBox[{"StringTake", "[", 
+         RowBox[{"line", ",", 
+          RowBox[{"{", 
+           RowBox[{"8", ",", 
+            RowBox[{"-", "2"}]}], "}"}]}], "]"}]}], "]"}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"start", "\[Equal]", "\"\<hex = \>\""}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"AppendTo", "[", 
+       RowBox[{"hex", ",", 
+        RowBox[{"StringTake", "[", 
+         RowBox[{"line", ",", 
+          RowBox[{"{", 
+           RowBox[{"8", ",", 
+            RowBox[{"-", "2"}]}], "}"}]}], "]"}]}], "]"}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"start", "\[Equal]", "\"\<int = \>\""}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"AppendTo", "[", 
+       RowBox[{"int", ",", 
+        RowBox[{"StringTake", "[", 
+         RowBox[{"line", ",", 
+          RowBox[{"{", 
+           RowBox[{"8", ",", 
+            RowBox[{"-", "2"}]}], "}"}]}], "]"}]}], "]"}]}], "]"}], ";"}]}], 
+  "\[IndentingNewLine]", "]"}]}], "Input",
+ CellChangeTimes->{{3.670852574695009*^9, 3.6708525981018705`*^9}, {
+  3.6708532189461894`*^9, 3.6708532472976007`*^9}, {3.6708533104584985`*^9, 
+  3.6708533425786324`*^9}, {3.670853404193635*^9, 3.6708534676991835`*^9}, {
+  3.6708535000911903`*^9, 3.6708535011195116`*^9}, {3.67085370286839*^9, 
+  3.6708537216615553`*^9}, {3.670853823740161*^9, 3.6708539257761555`*^9}, {
+  3.6708539898987846`*^9, 3.670853990002029*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Testing", " ", "StringToDouble", " ", "against", " ", "unreduced", " ", 
+    "integer", " ", "representation"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"i", "=", "1"}], ",", 
+    RowBox[{"i", "\[LessEqual]", 
+     RowBox[{"Length", "[", "str", "]"}]}], ",", 
+    RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"SetPrecision", "[", 
+        RowBox[{
+         RowBox[{"StringToDouble", "[", 
+          RowBox[{"str", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "]"}], ",", "\[Infinity]"}], "]"}],
+        "\[NotEqual]", 
+       RowBox[{"ToExpression", "[", 
+        RowBox[{"int", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"\"\<Conversion to double test UID \>\"", ",", 
+         RowBox[{"uid", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", "\"\< failed!\>\""}], "]"}], 
+       "]"}]}], "]"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6708535290962687`*^9, 3.670853633332383*^9}, {
+  3.670853667137701*^9, 3.6708536975949774`*^9}, {3.67085402833066*^9, 
+  3.670854038114788*^9}, {3.670854114255602*^9, 3.67085414141032*^9}, {
+  3.6708542087166233`*^9, 3.670854213585894*^9}, {3.670854526580733*^9, 
+  3.6708545273474913`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Testing", " ", "StringToDoubleHex", " ", "against", " ", "hex", " ", 
+    "representation"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"i", "=", "1"}], ",", 
+    RowBox[{"i", "\[LessEqual]", 
+     RowBox[{"Length", "[", "str", "]"}]}], ",", 
+    RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"StringToDoubleHex", "[", 
+        RowBox[{"str", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "]"}], "\[NotEqual]", 
+       RowBox[{"hex", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"\"\<Conversion to hex representation test UID \>\"", ",", 
+         RowBox[{"uid", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", "\"\< failed!\>\""}], "]"}], 
+       "]"}]}], "]"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6708535290962687`*^9, 3.670853633332383*^9}, {
+  3.670853667137701*^9, 3.6708536975949774`*^9}, {3.67085402833066*^9, 
+  3.670854108625908*^9}, {3.6708541453889847`*^9, 3.6708541545377226`*^9}, {
+  3.670854216173362*^9, 3.6708542217542686`*^9}, {3.670854419266919*^9, 
+  3.6708544200743666`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Testing", " ", "StringToDoubleInt", " ", "against", " ", "unreduced", " ",
+     "integer", " ", "representation"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"i", "=", "1"}], ",", 
+    RowBox[{"i", "\[LessEqual]", 
+     RowBox[{"Length", "[", "str", "]"}]}], ",", 
+    RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"StringToDoubleInt", "[", 
+        RowBox[{"str", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "]"}], "\[NotEqual]", 
+       RowBox[{"int", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"StringJoin", "[", 
+        RowBox[{
+        "\"\<Conversion to unreduced integer representation test UID \>\"", 
+         ",", 
+         RowBox[{"uid", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", "\"\< failed!\>\""}], "]"}], 
+       "]"}]}], "]"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6708535290962687`*^9, 3.670853633332383*^9}, {
+  3.670853667137701*^9, 3.6708536975949774`*^9}, {3.67085402833066*^9, 
+  3.670854108625908*^9}, {3.6708541453889847`*^9, 3.6708541545377226`*^9}, {
+  3.670854216173362*^9, 3.6708542217542686`*^9}, {3.670854419266919*^9, 
+  3.6708544726993227`*^9}}]
+},
+WindowSize->{1292, 775},
+WindowMargins->{{290, Automatic}, {Automatic, 114}},
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (February 25, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 246, 6, 52, "Input"],
+Cell[807, 28, 383, 8, 31, "Input"],
+Cell[1193, 38, 3055, 82, 312, "Input"],
+Cell[4251, 122, 1439, 34, 92, "Input"],
+Cell[5693, 158, 1297, 30, 92, "Input"],
+Cell[6993, 190, 1352, 32, 92, "Input"]
+}
+]
+*)
+

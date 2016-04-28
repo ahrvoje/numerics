@@ -7,6 +7,18 @@
 # StringToDouble method for Wolfram Mathematica [1]. All test are designed
 # for round-half-to-even rounding rule.
 #
+# Formatting tests check the following valid input formats: integers, C99
+# language standard decimal double precision floating constants (section
+# 6.4.4.2) and Infinity & NaN strings (section 7.19.6.1.8).
+#
+# The only non-standardized constraint is that NaN value string can't contain
+# closing parenthesis ")" inside optional parentheses, e.g. input
+# "nan(type_0)_123)" is not allowed, while "nan(type_0_123)" is valid. This
+# practice is widely spread among standard-compliant implementations.
+#
+# Perl compatible formatting compliance RegEx:
+# (?i)^[-+]?((((\d+\.?)|(\d*\.\d+))(e[-+]?\d+)?)|(inf(inity)?)|(nan(\([^)]*\))?))$
+#
 # Conversion tests are custom designed during StringToDouble implementation and
 # collected from David Gay's strtod development history [2], Rick Regan's
 # blog [3], GCC test suite [4] and other online sources.
@@ -28,9 +40,9 @@ positiveFormattingTests = [
 
 # strtod(string) method should not accept the following inputs
 negativeFormattingTests = [
-    "NAN(test_)_)", "nan0", "inf1", "inf+", ".E", "1.0e", "2.45+e+3", "23e.23",
-    "e9", "+e", "e+", ".", "e", ".7+", ".21e", "+", "", "infe", "nan(err",
-    "-.e+", "-+12.34"
+    "inf1", "inf+", ".E", "1.0e", "2.45+e+3", "23e.23", "e9", "+e", "e+", ".",
+    "e", ".7+", ".21e", "+", "", "infe", "nan(err", "nan)", "NAN(test_)_)",
+    "nan0", "-.e+", "-+12.34"
 ]
 
 # conversion tests consisting of test unique identifier, input string, correct

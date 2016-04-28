@@ -1,7 +1,7 @@
 import struct
 import toml
 
-with open('e:\\repos\\github\\numerics\\strtod_tests.toml') as tests_file:
+with open('strtod_tests.toml') as tests_file:
     tests = toml.loads(tests_file.read())
     conversion_tests = tests['conversionTests']
 
