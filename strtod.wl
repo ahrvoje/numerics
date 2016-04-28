@@ -2,7 +2,8 @@
 
 (*
 Author: Hrvoje Abraham
-Date: 24.04.2016.
+Date: 24 Apr 2016
+Version: 1
 License: MIT
 
 Floating point string to correctly rounded double precision value conversion based on the AlgorithmM available in 
@@ -33,8 +34,9 @@ NaN sign is handled and preserved by all the methods. Other NaN payload is disca
 About the methods:
   - StringToDoubleKernel : returns double precision value sign, significand and exponent
   - StringToDouble : returns double precision value based on StringToDoubleKernel output
-  - StringToDoubleB : returns IEEE-754 64-bit binary representation of double precision value
-  - StringToDoubleI : returns unreduced integer representation of double precision value
+  - StringToDoubleBin : returns IEEE-754 64-bit binary representation of double precision value
+  - StringToDoubleHex : returns IEEE-754 64-bit hex representation of double precision value
+  - StringToDoubleInt : returns unreduced integer representation of double precision value
 *)
 
 StringToDoubleKernel[str_]:=Module[{fpRegex, s, sign, mantissa, exponent, int, frac, decimals, a, scale, n, d, sd, r},

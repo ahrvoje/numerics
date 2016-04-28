@@ -1,5 +1,7 @@
 # Author: Hrvoje Abraham
-# Date: 26.04.2016.
+# Date: 26 Apr 2016
+# Version: 1
+# Format: TOML v0.4.0
 # License: MIT
 #
 # Collection of tests for string to IEEE-754 double precision floating point
@@ -24,7 +26,7 @@
 # blog [3], GCC test suite [4] and other online sources.
 #
 # References:
-# [1] https://github.com/ahrvoje/numerics
+# [1] https://github.com/ahrvoje/numerics/blob/master/strtod.wl
 # [2] http://www.netlib.org/fp/changes
 # [3] http://www.exploringbinary.com/
 # [4] https://gcc.gnu.org/viewcvs/gcc/trunk/gcc/testsuite/gcc.dg/float-exact-1.c
