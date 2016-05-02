@@ -457,7 +457,7 @@ str = "1.8254370818746402660437411213933955878019332885742187"
 hex = "3ffd34fd8378ea83"
 int = "8221037761718915*2^-52"
 
-# tests 33-63 are from Rick Reagan's blog
+# tests 33-63 are from Rick Regan's blog
 # http://www.exploringbinary.com/
 [[ConversionTests]]
 UID = "C33"
