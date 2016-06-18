@@ -2,8 +2,8 @@
 
 (*
 Author: Hrvoje Abraham
-Date: 24 Apr 2016
-Version: 1
+Date: 18 Jun 2016
+Version: 2
 License: MIT
 
 Floating point string to correctly rounded double precision value conversion based on the AlgorithmM available in 
@@ -75,9 +75,9 @@ StringToDoubleKernel[str_]:=Module[{fpRegex, s, sign, mantissa, exponent, int, f
     {int, frac} = {mantissa, "0"}];
 
   decimals = StringLength[frac];
-  {int, frac, exponent} = ToExpression[{int, frac,exponent}];
+  {int, frac, exponent} = ToExpression[{int, frac, exponent}];
 
-  (* the exact value of input string *)
+  (* the exact value of the input string *)
   a = (int * 10 ^ decimals + frac) * 10 ^ (exponent - decimals);
 
   (* underflow if at or below halfway between 0 and 2^-1074 *)
@@ -87,8 +87,14 @@ StringToDoubleKernel[str_]:=Module[{fpRegex, s, sign, mantissa, exponent, int, f
   If[a >= 2^971 * (2^53 - 1 + 1 / 2),
     Return[{sign, Infinity, 0}]];
 
-  (* scale into [2^52, 2^53) interval *)
-  scale = 0;
+  (* scale 'a' into [2^52, 2^53) interval *)
+  (* scaling approximaton step based on the fast approx for Log2[a] *)
+  scale = Round[3.3 * (IntegerLength[int] - 1 + exponent)] - 52;
+  If[scale < -1074,
+    scale = -1074];
+  a *= 2 ^ -scale;
+  
+  (* scaling correction loops *)
   (* if the exact value is below the interval *)
   While[a < 2 ^ 52 && scale > -1074,
     a *= 2; scale -= 1];
