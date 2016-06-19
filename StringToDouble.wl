@@ -2,8 +2,8 @@
 
 (*
 Author: Hrvoje Abraham
-Date: 18 Jun 2016
-Version: 2
+Date: 19 Jun 2016
+Version: 3
 License: MIT
 
 Floating point string to correctly rounded double precision value conversion based on the AlgorithmM available in 
@@ -20,7 +20,8 @@ It's rigorously tested against the most pathological inputs and halfway cases, s
 bytes long strings and other known-to-be-problematic inputs. But one never knows...
 https://github.com/ahrvoje/numerics/blob/master/strtod_tests.toml
 
-Implementation is not speed optimized, safety and transparency was the priority.
+Implementation is not speed optimized, safety and transparency was the priority. Scaling approximation step was
+introduced in version 2 which considerably improves performance for extreme values, but that's about it.
 
 Valid inputs are integers, C99 language standard decimal double precision floating constants (section 6.4.4.2) and
 special values [-]inf and [-]nan (section 7.19.6.1.8).
@@ -38,6 +39,22 @@ About the methods:
   - StringToDoubleHex : returns IEEE-754 64-bit hex representation of double precision value
   - StringToDoubleInt : returns unreduced integer representation of double precision value
 *)
+
+BeginPackage["StringToDouble`"]
+
+StringToDouble::usage =
+  "StringToDouble[s] returns the double precision value of the input string."
+
+StringToDoubleBin::usage =
+  "StringToDoubleBin[s] returns binary representation of the IEEE-754 double precision value of the input string."
+
+StringToDoubleHex::usage =
+  "StringToDoubleHex[s] returns hexadecimal representation of the IEEE-754 double precision value of the input string."
+
+StringToDoubleInt::usage =
+  "StringToDoubleInt[s] returns exact integer representation of the double precision value of the input string."
+
+Begin["`Private`"]
 
 StringToDoubleKernel[str_]:=Module[{fpRegex, s, sign, mantissa, exponent, int, frac, decimals, a, scale, n, d, sd, r},
   (* check the formatting *)
@@ -154,3 +171,7 @@ StringToDoubleInt[str_]:=Module[{sign, sd, scale, signStr, sdStr, exponentStr},
 
   Return[StringJoin[signStr, sdStr, exponentStr]];
 ]
+
+End[]
+
+EndPackage[]
