@@ -29,7 +29,7 @@
 # blog [3], GCC test suite [4] and other online sources.
 #
 # References:
-# [1] https://github.com/ahrvoje/numerics/blob/master/StringToDouble.wl
+# [1] https://github.com/ahrvoje/numerics/blob/master/strtod/StringToDouble.wl
 # [2] http://www.netlib.org/fp/changes
 # [3] http://www.exploringbinary.com/
 # [4] https://gcc.gnu.org/viewcvs/gcc/trunk/gcc/testsuite/gcc.dg/float-exact-1.c
