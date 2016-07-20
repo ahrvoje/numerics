@@ -4,12 +4,12 @@
 # Format: TOML v0.4.0
 # License: MIT
 #
-# Collection of tests for string to IEEE-754 double precision floating point
+# The collection of tests for string to IEEE-754 double precision floating point
 # value conversion. Originally used to test custom implementation of
-# StringToDouble method for Wolfram Mathematica [1]. All test are designed
+# StringToDouble method for Wolfram Mathematica [1]. All the tests are designed
 # for round-half-to-even rounding rule.
 #
-# Formatting tests check the following valid input formats: integers, C99
+# The formatting tests check the following valid input formats: integers, C99
 # language standard decimal double precision floating constants (section
 # 6.4.4.2) and Infinity & NaN strings (section 7.19.6.1.8).
 #
@@ -24,7 +24,7 @@
 # IEEE-754 NaN value has no unique binary representation. In this collection its
 # sign is preserved and mantissa is coded to 1.
 #
-# Conversion tests are custom designed during StringToDouble implementation and
+# The conversion tests are custom designed during StringToDouble implementation and
 # collected from David Gay's strtod development history [2], Rick Regan's
 # blog [3], GCC test suite [4] and other online sources.
 #
