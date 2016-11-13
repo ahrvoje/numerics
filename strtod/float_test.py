@@ -29,4 +29,4 @@ with open('strtod_tests.toml') as tests_file:
 
 # Python 3.5.1 64-bit on Win10
 # All 35 FormattingTests passed OK.
-# All 75 ConversionTests passed OK.
+# All 81 ConversionTests passed OK.
