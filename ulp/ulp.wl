@@ -1,7 +1,8 @@
-(* Calculating ULP of double precision x by explicity calculating
+(* Calculating ULP of double precision x by explicitly calculating
  * the value of the least significant bit towards the nearest representable double.
- * Author:Hrvoje Abraham
- * Date:21.12.2015
+ * Author: Hrvoje Abraham
+ * Date: 21.12.2015
+ * Revisions: 15.08.2017
  * MIT License https://opensource.org/licenses/MIT 
  *)
 

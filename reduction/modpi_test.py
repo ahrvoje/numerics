@@ -1,10 +1,11 @@
 from fractions import Fraction
 
-from modpi import modpi
+from reduction.modpi import modpi
 
 
 # Set of tests created using Kahan-McDonald algorithm for calculation of the worst argument reduction case.
-# Test is a tuple containing (k, mantissa, exponent, epsilon)
+# A single test is a tuple containing (k, significand, exponent, epsilon) for reduction of
+# significand * 2**exponent float into (-k*pi/2, k*pi/2) interval.
 tests = [
     (1, 6381956970095103, 798, 9.3743318485092553e-19),
     (Fraction(1, 2), 6381956970095103, 797, 4.6871659242546277e-19),
@@ -39,14 +40,19 @@ tests = [
     (Fraction(93, 8), 5934575450785442, 553, 8.1175538969241169e-18),
 ]
 
-tests_passed = True
-for k, mantissa, exp, epsilon in tests:
-    if modpi(float(mantissa * 2 ** exp), k) != epsilon:
-        tests_passed = False
-        print("Test failed!    k =", k)
 
-if tests_passed:
+def test_passed(test):
+    k, significand, exp, correctly_reduced = test
+
+    _, reduced = modpi(float(significand * 2**exp), k)
+    if reduced == correctly_reduced:
+        return True
+    else:
+        print("Test failed!    k =", k)
+        return False
+
+if all(test_passed(test) for test in tests):
     print("All tests passed.")
 
 # All tests passed.
-# Python 3.5.2 64bit
+# Python 3.6.2 64bit
