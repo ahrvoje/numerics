@@ -1,13 +1,3 @@
 *.pyc
-.idea/encodings.xml
-.idea/modules.xml
-.idea/numerics.iml
-.vs/numerics/v15/.suo
-.vs/numerics/v15/ipch/AutoPCH/47e99073/ULP-8a5574d0/ULP.ipch
-.vs/numerics/v15/ipch/AutoPCH/48e55266/ULP-8a5574d0/ULP.ipch
-.idea/misc.xml
-.vs/numerics/v15/Browse.VC.db
-.vs/ProjectSettings.json
-.idea/workspace.xml
-.vs/slnx.sqlite
-.vs/numerics/v15/Browse.VC.opendb
+.idea/**
+.vs/**
