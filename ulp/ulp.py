@@ -16,22 +16,23 @@ def ulp(x):
     Author: Hrvoje Abraham
     Date: 11.12.2015
     Revisions: 15.08.2017
+               26.11.2017
     MIT License https://opensource.org/licenses/MIT
 
-    :param x: (float) float for which ULP will be calculated
-    :returns: (float) ULP of the input float number
+    :param x: (float) float ULP will be calculated for
+    :returns: (float) the input float number ULP value
     """
 
     # setting sign bit to 0, e.g. -0.0 becomes 0.0
     t = abs(x)
 
-    # converting double to 64-bit unsigned integer
+    # converting IEEE-754 64-bit format bit content to unsigned integer
     ll = unpack('Q', pack('d', t))[0]
 
-    # computing first smaller integer, bigger in a case of ll=0 (t=0)
+    # computing first smaller integer, bigger in a case of ll=0 (t=0.0)
     near_ll = abs(ll - 1)
 
-    # converting back to double, its value will be nearest to t
+    # converting back to float, its value will be float nearest to t
     near_t = unpack('d', pack('Q', near_ll))[0]
 
     # abs takes care of case t=0.0
