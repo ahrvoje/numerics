@@ -1,3 +1,9 @@
+#
+# Author: Hrvoje Abraham
+# e-mail: ahrvoje@gmail.com
+#
+
+
 from operator import itemgetter
 
 from numpy import array
@@ -15,15 +21,15 @@ def quaternion_to_matrix(q):
     w, x, y, z = q
 
     return array([
-        [1 - 2 * (y * y + z * z), 2 * (x * y - w * z), 2 * (x * z + w * y)],
-        [2 * (x * y + w * z), 1 - 2 * (x * x + z * z), 2 * (y * z - w * x)],
-        [2 * (x * z - w * y), 2 * (y * z + w * x), 1 - 2 * (x * x + y * y)],
+        [1 - 2 * (y * y + z * z),     2 * (x * y - w * z),     2 * (x * z + w * y)],
+        [    2 * (x * y + w * z), 1 - 2 * (x * x + z * z),     2 * (y * z - w * x)],
+        [    2 * (x * z - w * y),     2 * (y * z + w * x), 1 - 2 * (x * x + y * y)],
     ])
 
 
 def to_nearest_rotation(R):
     """
-    Calculation of the valid (orthonormal) rotation matrix nearest to the input matrix, based on the adapted Version 3 algorithm from:
+    Calculation of valid (orthonormal) rotation matrix nearest to some input matrix, based on the adapted Version 3 algorithm from:
 
     Itzhack Y. Bar-Itzhack.  "New Method for Extracting the Quaternion from a Rotation Matrix",
     Journal of Guidance, Control, and Dynamics, Vol. 23, No. 6 (2000), pp. 1085-1087.
@@ -36,10 +42,10 @@ def to_nearest_rotation(R):
     X, Y, Z = R
 
     K = array([
-        [X[0] + Y[1] + Z[2], Z[1] - Y[2], X[2] - Z[0], Y[0] - X[1]],
-        [Z[1] - Y[2], X[0] - Y[1] - Z[2], Y[0] + X[1], Z[0] + X[2]],
-        [X[2] - Z[0], Y[0] + X[1], -X[0] + Y[1] - Z[2], Z[1] + Y[2]],
-        [Y[0] - X[1], Z[0] + X[2], Z[1] + Y[2], - X[0] - Y[1] + Z[2]],
+        [X[0] + Y[1] + Z[2], Z[1] - Y[2],        X[2] - Z[0],        Y[0] - X[1]],
+        [Z[1] - Y[2],        X[0] - Y[1] - Z[2], Y[0] + X[1],        Z[0] + X[2]],
+        [X[2] - Z[0],        Y[0] + X[1],       -X[0] + Y[1] - Z[2], Z[1] + Y[2]],
+        [Y[0] - X[1],        Z[0] + X[2],        Z[1] + Y[2],       -X[0] - Y[1] + Z[2]],
     ])
 
     # the desired quaternion is eigenvector with the largest eigenvalue
