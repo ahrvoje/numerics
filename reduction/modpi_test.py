@@ -51,6 +51,7 @@ def test_passed(test):
         print("Test failed!    k =", k)
         return False
 
+
 if all(test_passed(test) for test in tests):
     print("All tests passed.")
 
