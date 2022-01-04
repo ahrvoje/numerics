@@ -28,11 +28,11 @@ for _ in range(100000):
         e2 = evaluator.evaluate(board, hand_2)
 
         if e1 < e2:
-            payout += 1. / runs
+            payout += 1.
         elif e1 == e2:
-            payout += 0.5 / runs
+            payout += 0.5
 
     payouts.append(payout)
 
-print(average(payouts))
-print(var(payouts))
+print(average(payouts) / runs)
+print(var(payouts) / runs)
