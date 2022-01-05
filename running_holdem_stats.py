@@ -14,7 +14,7 @@ hand_2 = [c3, c4]
 runs = 5
 payouts = []
 evaluator = Evaluator()
-for _ in range(100000):
+for _ in range(100_000):
     deck = Deck()
     deck.cards.remove(c1)
     deck.cards.remove(c2)
